@@ -14,8 +14,8 @@
   ],
   "icons": [
     {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
+      "src": "/icon-pwa.png",
+      "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"
     }
@@ -23,14 +23,14 @@
   "screenshots": [
     {
       "src": "/screenshot-mobile.png",
-      "sizes": "390x844",
+      "sizes": "625x939",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Mobile Chat Experience"
     },
     {
       "src": "/screenshot-desktop.png",
-      "sizes": "1280x800",
+      "sizes": "1584x884",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Desktop Chat Grid"
