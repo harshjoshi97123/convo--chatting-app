@@ -1,13 +1,9 @@
 {
-  "version": 3,
-  "builds": [
+  "outputDirectory": "build",
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "outputDirectory": "build"
+  ]
 }

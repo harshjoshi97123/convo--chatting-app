@@ -1,4 +1,10 @@
-# Using Android gitignore template: https://github.com/github/gitignore/blob/HEAD/Android.gitignore
+# Node
+node_modules/
+dist/
+.env
+.vercel
+.cache/
+.eslintcache
 
 # Built application files
 *.apk
