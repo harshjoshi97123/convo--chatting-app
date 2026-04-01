@@ -1,0 +1,20 @@
+[
+  {
+    "id": "room:test1774090798179",
+    "name": "Automated Test Room",
+    "created_at": "2026-03-21T10:59:58.320222+00:00",
+    "created_by": null
+  },
+  {
+    "id": "room:debug1774090888232",
+    "name": "Debug",
+    "created_at": "2026-03-21T11:01:28.735197+00:00",
+    "created_by": null
+  },
+  {
+    "id": "room:w4b1ei0",
+    "name": "DSA COURSE",
+    "created_at": "2026-03-21T11:09:13.238764+00:00",
+    "created_by": null
+  }
+]
