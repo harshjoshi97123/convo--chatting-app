@@ -2,16 +2,38 @@
   "name": "Convo Chat Application",
   "short_name": "Convo",
   "description": "A premium modern chat application with real-time messaging and video calls.",
+  "id": "/?source=pwa",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#000000",
   "theme_color": "#6366f1",
+  "orientation": "portrait",
+  "categories": [
+    "social",
+    "communication"
+  ],
   "icons": [
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile Chat Experience"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop Chat Grid"
     }
   ]
 }
