@@ -88,18 +88,13 @@ export function AuthScreen({ onAuthSuccess }: AuthScreenProps) {
       // 3. Supabase Auth Signup
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
-        password,
-        options: {
-          data: {
-            name,
-            username,
-          }
-        }
+        password
       });
 
       console.log('[Auth] Auth Signup response:', { authData, authError });
 
       if (authError) {
+        console.error(authError.message);
         if (authError.message.includes('already registered')) {
           toast.error('Email already exists');
         } else {
@@ -154,30 +149,7 @@ export function AuthScreen({ onAuthSuccess }: AuthScreenProps) {
     console.log('[Auth] Attempting login with:', loginData.identifier);
     setIsLoading(true);
     try {
-      let email = loginData.identifier;
-
-      // If identifier doesn't look like an email, try to resolve it as a username
-      if (!email.includes('@')) {
-        const username = email.replace(/^@/, ''); // Remove leading @ if present
-        const { data: dbData, error: dbError } = await (supabase as any)
-          .from('users')
-          .select('email')
-          .eq('username', username)
-          .maybeSingle();
-
-        if (dbError) {
-          console.error('[Auth] Database lookup error:', dbError);
-        }
-
-        if (!dbData || !dbData.email) {
-          toast.error('Username not found');
-          setIsLoading(false);
-          return;
-        }
-
-        email = dbData.email;
-        console.log(`[Auth] Resolved username @${username} to email: ${email}`);
-      }
+      const email = loginData.identifier;
 
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -187,16 +159,23 @@ export function AuthScreen({ onAuthSuccess }: AuthScreenProps) {
       console.log('[Auth] Login response:', { data, error });
 
       if (error) {
-        toast.error(error.message || 'Login failed');
+        console.error(error.message);
+        if (error.message.toLowerCase().includes('email not confirmed')) {
+          toast.error('Please verify your email before logging in.');
+        } else {
+          toast.error(error.message || 'Login failed');
+        }
         return;
       }
 
       if (data.session) {
         toast.success('Welcome back!');
         onAuthSuccess(data.user, data.session.access_token);
+      } else {
+        toast.error('Please verify your email to log in');
       }
-    } catch (error) {
-      console.error('[Auth] Login error:', error);
+    } catch (error: any) {
+      if (error) console.error(error.message || 'Login error');
       toast.error('Failed to login');
     } finally {
       setIsLoading(false);
